@@ -1,5 +1,5 @@
 ## Description
-Nest backend
+Nest backend with auth and stuff
 
 ## Installation
 
