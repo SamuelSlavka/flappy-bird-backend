@@ -10,16 +10,19 @@ $ yarn install
 ## Running the app
 
 ```
-# development
-$ yarn run start
-
-# watch mode
-$ yarn run start:dev
+# development mode
+$ docker-compose up
 
 # production mode
-$ yarn run start:prod
+tbd ...
 ```
+```
+  Api docs: http://localhost:3000/docs
 
+  Api endpoints: http://localhost:3000/api/
+
+  Adminer: http://localhost:8081/
+```
 ## Test
 
 ```

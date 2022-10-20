@@ -8,11 +8,13 @@ import {
   Delete,
   ParseUUIDPipe,
   UseGuards,
+  UseInterceptors,
+  CacheInterceptor,
 } from '@nestjs/common';
 import { PlayersService } from './players.service';
 import { CreatePlayerDto } from './dto/create-player.dto';
 import { UpdatePlayerDto } from './dto/update-player.dto';
-import { JwtAuthGuard } from '../auth/jwt-auth.guard';
+import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
 import { ApiResponse, ApiTags } from '@nestjs/swagger';
 import { Player } from './entities/player.entity';
 
@@ -27,6 +29,7 @@ export class PlayersController {
     return this.playersService.create(createPlayerDto);
   }
 
+  @UseInterceptors(CacheInterceptor)
   @Get()
   @ApiResponse({
     status: 200,
@@ -37,6 +40,7 @@ export class PlayersController {
     return this.playersService.findAll();
   }
 
+  @UseInterceptors(CacheInterceptor)
   @Get(':id')
   @ApiResponse({
     status: 200,
@@ -44,7 +48,7 @@ export class PlayersController {
     type: Player,
   })
   findOne(@Param('id', new ParseUUIDPipe()) id: string) {
-    return this.playersService.findOne(+id);
+    return this.playersService.findOne(id);
   }
 
   @UseGuards(JwtAuthGuard)
@@ -58,7 +62,7 @@ export class PlayersController {
     @Param('id', new ParseUUIDPipe()) id: string,
     @Body() updatePlayerDto: UpdatePlayerDto,
   ) {
-    return this.playersService.update(+id, updatePlayerDto);
+    return this.playersService.update(id, updatePlayerDto);
   }
 
   @UseGuards(JwtAuthGuard)
@@ -69,6 +73,6 @@ export class PlayersController {
     type: Player,
   })
   remove(@Param('id', new ParseUUIDPipe()) id: string) {
-    return this.playersService.remove(+id);
+    return this.playersService.remove(id);
   }
 }

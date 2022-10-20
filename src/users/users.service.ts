@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { ApiProperty } from '@nestjs/swagger';
 
 export class User {
-  userId: number;
+  userId: string;
   @ApiProperty()
   username: string;
   @ApiProperty()
@@ -13,7 +13,7 @@ export class User {
 export class UsersService {
   private readonly users = [
     {
-      userId: 1,
+      userId: '1',
       username: process.env.ADMIN_NAME,
       password: process.env.ADMIN_PASSWORD_HASH,
     },

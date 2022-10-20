@@ -12,7 +12,7 @@ import { ApiResponse, ApiTags } from '@nestjs/swagger';
 import { AppService } from './app.service';
 import { Payload } from './auth/auth.interface';
 import { AuthService } from './auth/auth.service';
-import { LocalAuthGuard } from './auth/local-auth.guard';
+import { LocalAuthGuard } from './auth/guards/local-auth.guard';
 import { User } from './users/users.service';
 
 @Controller()

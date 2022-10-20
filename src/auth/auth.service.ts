@@ -15,8 +15,8 @@ export class AuthService {
     if (user) {
       const authResult = await bcrypt.compare(pass, user.password);
       if (authResult) {
-        const { password, ...result } = user;
-        return result;
+        delete user.password;
+        return user;
       }
     }
     return null;
@@ -27,6 +27,17 @@ export class AuthService {
     const payload = { username: user.username, sub: storedUser.userId };
     return {
       access_token: this.jwtService.sign(payload),
+      refresh_token: this.refreshToken(payload.sub),
     };
+  }
+
+  private refreshToken(sub: string): string {
+    return this.jwtService.sign(
+      { sub },
+      {
+        secret: `${process.env.JWT_SECRET}`,
+        expiresIn: '1d',
+      },
+    );
   }
 }
