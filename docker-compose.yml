@@ -12,7 +12,7 @@ services:
     depends_on:
       - postgres
     # Run a command against the development stage of the image
-    command: npm run start:dev
+    command: yarn run start:dev
     ports:
       - 3000:3000
 

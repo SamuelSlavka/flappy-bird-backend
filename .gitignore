@@ -37,3 +37,4 @@ lerna-debug.log*
 .git
 .dist
 .env
+postgres

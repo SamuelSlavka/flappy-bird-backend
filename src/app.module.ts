@@ -19,14 +19,15 @@ import { Player } from './players/entities/player.entity';
     CacheModule.register({ isGlobal: true }),
     TypeOrmModule.forRoot({
       type: 'postgres',
-      host: '172.17.0.1',
-      port: 5432,
+      host: process.env.PSQL_URL,
+      port: Number(process.env.PSQL_PORT),
       username: process.env.PSQL_USER,
       password: process.env.PSQL_PASSWORD,
       database: process.env.PSQL_DATABASE,
       entities: [Player],
       synchronize: true,
     }),
+    ConfigModule.forRoot({ isGlobal: true }),
   ],
   controllers: [AppController],
   providers: [
