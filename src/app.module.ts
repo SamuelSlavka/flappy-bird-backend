@@ -7,6 +7,7 @@ import { PlayersModule } from './players/players.module';
 import { AuthModule } from './auth/auth.module';
 import { UsersModule } from './users/users.module';
 import { ConfigModule } from '@nestjs/config';
+import * as redisStore from 'cache-manager-redis-store';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Player } from './players/entities/player.entity';
 
@@ -16,14 +17,22 @@ import { Player } from './players/entities/player.entity';
     AuthModule,
     UsersModule,
     ConfigModule.forRoot({ isGlobal: true }),
-    CacheModule.register({ isGlobal: true }),
+    CacheModule.register({
+      isGlobal: true,
+      store: redisStore,
+      host: process.env.REDIS_HOST,
+      port: process.env.REDIS_PORT,
+      username: process.env.REDIS_USERNAME,
+      password: process.env.REDIS_PASSWORD,
+      no_ready_check: true,
+    }),
     TypeOrmModule.forRoot({
       type: 'postgres',
-      host: process.env.PSQL_URL,
-      port: Number(process.env.PSQL_PORT),
-      username: process.env.PSQL_USER,
-      password: process.env.PSQL_PASSWORD,
-      database: process.env.PSQL_DATABASE,
+      host: process.env.POSTGRES_URL,
+      port: Number(process.env.POSTGRES_PORT),
+      username: process.env.POSTGRES_USER,
+      password: process.env.POSTGRES_PASSWORD,
+      database: process.env.POSTGRES_DATABASE,
       entities: [Player],
       synchronize: true,
     }),
