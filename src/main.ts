@@ -6,6 +6,7 @@ import { logger } from './middleware/logger.middleware';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   app.use(logger);
+  app.enableCors();
   app.setGlobalPrefix('api');
 
   const config = new DocumentBuilder()
