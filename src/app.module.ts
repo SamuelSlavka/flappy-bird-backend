@@ -1,4 +1,4 @@
-import { Module, CacheModule } from '@nestjs/common';
+import { Module } from '@nestjs/common';
 import { APP_FILTER } from '@nestjs/core';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
@@ -7,7 +7,6 @@ import { PlayersModule } from './players/players.module';
 import { AuthModule } from './auth/auth.module';
 import { UsersModule } from './users/users.module';
 import { ConfigModule } from '@nestjs/config';
-import * as redisStore from 'cache-manager-redis-store';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Player } from './players/entities/player.entity';
 
@@ -17,15 +16,6 @@ import { Player } from './players/entities/player.entity';
     AuthModule,
     UsersModule,
     ConfigModule.forRoot({ isGlobal: true }),
-    CacheModule.register({
-      isGlobal: true,
-      store: redisStore,
-      host: process.env.REDIS_HOST,
-      port: process.env.REDIS_PORT,
-      username: process.env.REDIS_USERNAME,
-      password: process.env.REDIS_PASSWORD,
-      no_ready_check: true,
-    }),
     TypeOrmModule.forRoot({
       type: 'postgres',
       host: process.env.POSTGRES_URL,

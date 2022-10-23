@@ -15,7 +15,7 @@ services:
     # Run a command against the development stage of the image
     command: yarn run start:dev
     ports:
-      - 3000:3000
+      - 5000:5000
 
   postgres:
     image: postgres
