@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { Repository, UpdateResult } from 'typeorm';
 import { CreatePlayerDto } from './dto/create-player.dto';
 import { UpdatePlayerDto } from './dto/update-player.dto';
 import { Player } from './entities/player.entity';
@@ -28,7 +28,7 @@ export class PlayersService {
     return this.playersRepository.save({ id, ...updatePlayerDto });
   }
 
-  async remove(id: string): Promise<void> {
-    await this.playersRepository.delete(id);
+  remove(id: string): Promise<UpdateResult> {
+    return this.playersRepository.softDelete(id);
   }
 }

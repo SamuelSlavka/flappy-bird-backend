@@ -1,5 +1,10 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Entity,
+  Column,
+  PrimaryGeneratedColumn,
+  DeleteDateColumn,
+} from 'typeorm';
 
 @Entity()
 export class Player {
@@ -13,4 +18,6 @@ export class Player {
   @Column()
   @ApiProperty()
   record: string;
+
+  @DeleteDateColumn() deletedAt?: Date;
 }

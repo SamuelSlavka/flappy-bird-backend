@@ -10,6 +10,7 @@ import {
   UseGuards,
   UseInterceptors,
   CacheInterceptor,
+  ParseIntPipe,
 } from '@nestjs/common';
 import { PlayersService } from './players.service';
 import { CreatePlayerDto } from './dto/create-player.dto';
@@ -48,7 +49,7 @@ export class PlayersController {
     description: 'The found player',
     type: Player,
   })
-  findOne(@Param('id', new ParseUUIDPipe()) id: string) {
+  findOne(@Param('id', new ParseIntPipe()) id: string) {
     return this.playersService.findOne(id);
   }
 
@@ -60,7 +61,7 @@ export class PlayersController {
     type: Player,
   })
   update(
-    @Param('id', new ParseUUIDPipe()) id: string,
+    @Param('id', new ParseIntPipe()) id: string,
     @Body() updatePlayerDto: UpdatePlayerDto,
   ) {
     return this.playersService.update(id, updatePlayerDto);
@@ -73,7 +74,7 @@ export class PlayersController {
     description: 'The removed player',
     type: Player,
   })
-  remove(@Param('id', new ParseUUIDPipe()) id: string) {
-    return this.playersService.remove(id);
+  remove(@Param('id', new ParseIntPipe()) id: string) {
+    return { result: this.playersService.remove(id), id };
   }
 }
