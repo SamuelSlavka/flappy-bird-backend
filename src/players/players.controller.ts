@@ -29,8 +29,9 @@ export class PlayersController {
     return this.playersService.create(createPlayerDto);
   }
 
-  @UseInterceptors(CacheInterceptor)
-  @Get()
+  // TODO: add cache expiration on post/delete/update
+  // @UseInterceptors(CacheInterceptor)
+  @Get('')
   @ApiResponse({
     status: 200,
     description: 'All players',
