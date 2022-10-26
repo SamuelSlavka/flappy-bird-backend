@@ -17,7 +17,7 @@ export class Player {
 
   @Column()
   @ApiProperty()
-  record: string;
+  record: number;
 
   @DeleteDateColumn() deletedAt?: Date;
 }

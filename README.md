@@ -21,7 +21,7 @@ tbd ...
 
   Api endpoints: http://localhost:3000/api/
 
-  Adminer: http://localhost:8081/
+  Adminer: http://localhost:8010/
 ```
 ## Test
 

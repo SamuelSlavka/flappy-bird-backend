@@ -6,7 +6,7 @@ import {
   Patch,
   Param,
   Delete,
-  ParseUUIDPipe,
+  Request,
   UseGuards,
   UseInterceptors,
   CacheInterceptor,
@@ -38,8 +38,11 @@ export class PlayersController {
     description: 'All players',
     type: [Player],
   })
-  findAll() {
-    return this.playersService.findAll();
+  async findAll(@Request() request) {
+    return this.playersService.findAll({
+      limit: request.query.hasOwnProperty('limit') ? request.query.limit : 8,
+      page: request.query.hasOwnProperty('page') ? request.query.page : 0,
+    });
   }
 
   @UseInterceptors(CacheInterceptor)
@@ -53,7 +56,6 @@ export class PlayersController {
     return this.playersService.findOne(id);
   }
 
-  @UseGuards(JwtAuthGuard)
   @Patch(':id')
   @ApiResponse({
     status: 200,
