@@ -9,3 +9,7 @@ export interface PaginationOptionsInterface {
   limit: number;
   page: number;
 }
+
+export interface PositionOptionsInterface {
+  record: number;
+}

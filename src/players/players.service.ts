@@ -2,7 +2,10 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository, UpdateResult } from 'typeorm';
 import { Pagination } from '../pagination/pagination';
-import { PaginationOptionsInterface } from '../pagination/pagination.interfaces';
+import {
+  PaginationOptionsInterface,
+  PositionOptionsInterface,
+} from '../pagination/pagination.interfaces';
 import { CreatePlayerDto } from './dto/create-player.dto';
 import { UpdatePlayerDto } from './dto/update-player.dto';
 import { Player } from './entities/player.entity';
@@ -35,11 +38,31 @@ export class PlayersService {
     });
   }
 
+  async getClosestPlayer(options: PositionOptionsInterface): Promise<Player> {
+    const result = await this.playersRepository
+      .createQueryBuilder()
+      .addSelect('ROW_NUMBER () OVER (ORDER BY "record" DESC) as "rank"')
+      .orderBy(`ABS( record - ${options.record} ) `)
+      .getRawOne();
+
+    const closestPlayer = {
+      id: result.Player_id,
+      name: result.Player_name,
+      record: result.Player_record,
+      deletedAt: result.Player_deletedAt,
+      rank: result.rank,
+    };
+    return closestPlayer;
+  }
+
   findOne(id: string): Promise<Player> {
     return this.playersRepository.findOneBy({ id });
   }
 
   update(id: string, updatePlayerDto: UpdatePlayerDto): Promise<Player> {
+    if (id) {
+      this.playersRepository.restore(id);
+    }
     return this.playersRepository.save({ id, ...updatePlayerDto });
   }
 

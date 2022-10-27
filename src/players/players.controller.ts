@@ -3,7 +3,6 @@ import {
   Get,
   Post,
   Body,
-  Patch,
   Param,
   Delete,
   Request,
@@ -24,7 +23,6 @@ import { Player } from './entities/player.entity';
 export class PlayersController {
   constructor(private readonly playersService: PlayersService) {}
 
-  @UseGuards(JwtAuthGuard)
   @Post()
   create(@Body() createPlayerDto: CreatePlayerDto) {
     return this.playersService.create(createPlayerDto);
@@ -45,6 +43,18 @@ export class PlayersController {
     });
   }
 
+  @Get('closest')
+  @ApiResponse({
+    status: 200,
+    description: 'All players',
+    type: Player,
+  })
+  async getClosest(@Request() request) {
+    return this.playersService.getClosestPlayer({
+      record: request.query.hasOwnProperty('record') ? request.query.record : 0,
+    });
+  }
+
   @UseInterceptors(CacheInterceptor)
   @Get(':id')
   @ApiResponse({
@@ -56,7 +66,7 @@ export class PlayersController {
     return this.playersService.findOne(id);
   }
 
-  @Patch(':id')
+  @Post(':id')
   @ApiResponse({
     status: 200,
     description: 'The updated player',
