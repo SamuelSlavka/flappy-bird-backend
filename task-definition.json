@@ -1,9 +1,9 @@
 {
-  "taskDefinitionArn": "arn:aws:ecs:eu-central-1:729874466502:task-definition/game-backend-task:1",
+  "taskDefinitionArn": "arn:aws:ecs:eu-central-1:729874466502:task-definition/game-backend-task:3",
   "containerDefinitions": [
       {
           "name": "game-backend",
-          "image": "729874466502.dkr.ecr.eu-central-1.amazonaws.com/game-backend:c2bd4925cb2382b7a50c11c87dae6f0c19786984",
+          "image": "729874466502.dkr.ecr.eu-central-1.amazonaws.com/game-backend:0503ae08aa03bd52a3fa71bc833f9437bb6e9864",
           "cpu": 0,
           "links": [],
           "portMappings": [
@@ -24,6 +24,10 @@
               {
                   "name": "POSTGRES_PASSWORD",
                   "value": "G3B25KKpHZj7NAi"
+              },
+              {
+                  "name": "ADMIN_PASSWORD",
+                  "value": "2a7rzk3shjycbt"
               },
               {
                   "name": "JWT_SECRET",
@@ -56,7 +60,7 @@
   "family": "game-backend-task",
   "executionRoleArn": "arn:aws:iam::729874466502:role/ecsTaskExecutionRole",
   "networkMode": "awsvpc",
-  "revision": 1,
+  "revision": 3,
   "volumes": [],
   "status": "ACTIVE",
   "requiresAttributes": [
@@ -102,7 +106,7 @@
       "cpuArchitecture": "X86_64",
       "operatingSystemFamily": "LINUX"
   },
-  "registeredAt": "2022-11-02T19:55:09.528Z",
+  "registeredAt": "2022-11-02T20:09:15.257Z",
   "registeredBy": "arn:aws:iam::729874466502:root",
   "tags": [
       {
@@ -111,7 +115,7 @@
       },
       {
           "key": "ecs:taskDefinition:stackId",
-          "value": "arn:aws:cloudformation:eu-central-1:729874466502:stack/ECS-Console-V2-TaskDefinition-55a94628-e8a6-4c61-ae41-a84f4c20f7b2/3e54a2c0-5ae8-11ed-b5c3-067d161f8c72"
+          "value": "arn:aws:cloudformation:eu-central-1:729874466502:stack/ECS-Console-V2-TaskDefinition-7e59b650-f4a6-4652-9558-c4eb862288f1/36dc5590-5aea-11ed-b91b-06b2deaada98"
       }
   ]
 }

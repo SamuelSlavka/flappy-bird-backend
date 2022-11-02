@@ -14,15 +14,17 @@ export class User {
 export class UsersService {
   // save only password hash
   private users = new Promise<User[]>((resolve) => {
-    bcrypt.hash(process.env.ADMIN_PASSWORD, 10).then((passwordHash) => {
-      resolve([
-        {
-          userId: '1',
-          username: process.env.ADMIN_NAME || 'admin',
-          password: passwordHash,
-        },
-      ]);
-    });
+    bcrypt
+      .hash(process.env.ADMIN_PASSWORD || 'password', 10)
+      .then((passwordHash) => {
+        resolve([
+          {
+            userId: '1',
+            username: process.env.ADMIN_NAME || 'admin',
+            password: passwordHash,
+          },
+        ]);
+      });
   });
 
   async findOne(username: string): Promise<User | undefined> {
