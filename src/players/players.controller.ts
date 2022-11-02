@@ -55,7 +55,7 @@ export class PlayersController {
     });
   }
 
-  @UseInterceptors(CacheInterceptor)
+  // @UseInterceptors(CacheInterceptor)
   @Get(':id')
   @ApiResponse({
     status: 200,

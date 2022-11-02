@@ -1,0 +1,117 @@
+{
+  "taskDefinitionArn": "arn:aws:ecs:eu-central-1:729874466502:task-definition/game-backend-task:1",
+  "containerDefinitions": [
+      {
+          "name": "game-backend",
+          "image": "729874466502.dkr.ecr.eu-central-1.amazonaws.com/game-backend:c2bd4925cb2382b7a50c11c87dae6f0c19786984",
+          "cpu": 0,
+          "links": [],
+          "portMappings": [
+              {
+                  "containerPort": 5000,
+                  "hostPort": 5000,
+                  "protocol": "tcp"
+              }
+          ],
+          "essential": true,
+          "entryPoint": [],
+          "command": [],
+          "environment": [
+              {
+                  "name": "POSTGRES_URL",
+                  "value": "game-db.crgruy8xgbai.eu-central-1.rds.amazonaws.com"
+              },
+              {
+                  "name": "POSTGRES_PASSWORD",
+                  "value": "G3B25KKpHZj7NAi"
+              },
+              {
+                  "name": "JWT_SECRET",
+                  "value": "'d2%$9ci^k*7#``ec%$ix#45"
+              }
+          ],
+          "environmentFiles": [],
+          "mountPoints": [],
+          "volumesFrom": [],
+          "secrets": [],
+          "dnsServers": [],
+          "dnsSearchDomains": [],
+          "extraHosts": [],
+          "dockerSecurityOptions": [],
+          "dockerLabels": {},
+          "ulimits": [],
+          "logConfiguration": {
+              "logDriver": "awslogs",
+              "options": {
+                  "awslogs-create-group": "true",
+                  "awslogs-group": "/ecs/game-backend-task",
+                  "awslogs-region": "eu-central-1",
+                  "awslogs-stream-prefix": "ecs"
+              },
+              "secretOptions": []
+          },
+          "systemControls": []
+      }
+  ],
+  "family": "game-backend-task",
+  "executionRoleArn": "arn:aws:iam::729874466502:role/ecsTaskExecutionRole",
+  "networkMode": "awsvpc",
+  "revision": 1,
+  "volumes": [],
+  "status": "ACTIVE",
+  "requiresAttributes": [
+      {
+          "name": "com.amazonaws.ecs.capability.logging-driver.awslogs"
+      },
+      {
+          "name": "ecs.capability.execution-role-awslogs"
+      },
+      {
+          "name": "com.amazonaws.ecs.capability.ecr-auth"
+      },
+      {
+          "name": "com.amazonaws.ecs.capability.docker-remote-api.1.19"
+      },
+      {
+          "name": "com.amazonaws.ecs.capability.docker-remote-api.1.17"
+      },
+      {
+          "name": "ecs.capability.execution-role-ecr-pull"
+      },
+      {
+          "name": "com.amazonaws.ecs.capability.docker-remote-api.1.18"
+      },
+      {
+          "name": "ecs.capability.task-eni"
+      },
+      {
+          "name": "com.amazonaws.ecs.capability.docker-remote-api.1.29"
+      }
+  ],
+  "placementConstraints": [],
+  "compatibilities": [
+      "EC2",
+      "FARGATE"
+  ],
+  "requiresCompatibilities": [
+      "FARGATE"
+  ],
+  "cpu": "1024",
+  "memory": "2048",
+  "runtimePlatform": {
+      "cpuArchitecture": "X86_64",
+      "operatingSystemFamily": "LINUX"
+  },
+  "registeredAt": "2022-11-02T19:55:09.528Z",
+  "registeredBy": "arn:aws:iam::729874466502:root",
+  "tags": [
+      {
+          "key": "ecs:taskDefinition:createdFrom",
+          "value": "ecs-console-v2"
+      },
+      {
+          "key": "ecs:taskDefinition:stackId",
+          "value": "arn:aws:cloudformation:eu-central-1:729874466502:stack/ECS-Console-V2-TaskDefinition-55a94628-e8a6-4c61-ae41-a84f4c20f7b2/3e54a2c0-5ae8-11ed-b5c3-067d161f8c72"
+      }
+  ]
+}

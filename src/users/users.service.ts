@@ -18,7 +18,7 @@ export class UsersService {
       resolve([
         {
           userId: '1',
-          username: process.env.ADMIN_NAME,
+          username: process.env.ADMIN_NAME || 'admin',
           password: passwordHash,
         },
       ]);
