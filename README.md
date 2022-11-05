@@ -1,5 +1,5 @@
 ## Description
-Nest backend with auth and stuff
+Nestjs backend with auth and stuff
 
 ## Installation
 
@@ -9,21 +9,21 @@ $ yarn install
 
 ## Running the app
 
-```
-# development mode
-$ docker-compose up
+    $ docker-compose up
 
-# production mode
-tbd ...
-```
-```
-  Api docs: http://localhost:3000/docs
+#### Api docs:
+  
+  [localhost:5000/docs](http://localhost:5000/docs)
 
-  Api endpoints: http://localhost:3000/api/
+#### Api endpoints: 
 
-  Adminer: http://localhost:8010/
-```
-## Test
+  [localhost:5000/api](http://localhost:5000/api)
+
+#### Adminer:
+
+  [localhost:8010](http://localhost:8010/)
+
+## Tests
 
 ```
 # unit tests
