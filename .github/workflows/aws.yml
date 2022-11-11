@@ -30,6 +30,9 @@ jobs:
     steps:
     - name: Add secrets to Task Definition
       run: |
+        ls
+        pwd
+        ls ../
         sed -i "s/<POSTGRES_URL>/$POSTGRES_URL/g" task-definition.json 
         sed -i "s/<POSTGRES_PASSWORD>/$POSTGRES_PASSWORD/g" task-definition.json
         sed -i "s/<ADMIN_PASSWORD>/$ADMIN_PASSWORD/g" task-definition.json
